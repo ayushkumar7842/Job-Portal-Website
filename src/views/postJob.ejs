@@ -1,0 +1,76 @@
+<div>
+  <div class="container p-3 mx-auto w-50 form-box my-5 rounded-md">
+    <h2 style="color: #181642" class="text-center mb-3">
+      <%= locals.isUpdate ? 'Update Job' : 'Post a new Job' %>
+    </h2>
+    
+    <form action="<%= locals.isUpdate ? '/jobs/' + job.id : '/jobs' %>" method="post">
+
+      <div class="input-group mb-3">
+        <select required name="job_category" class="form-select" aria-label="Default select example">
+          <option selected disabled>select job category</option>
+          <option value="Tech">Tech</option>
+          <option value="Non-Tech">Non Tech</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <select required name="job_designation" class="form-select" aria-label="Default select example">
+          <option selected disabled>select job designation</option>
+          <option value="HR">HR</option>
+          <option value="SDE">SDE</option>
+          <option value="DevOps">DevOps</option>
+          <option value="MERN Developer">MERN Developer</option>
+          <option value="MEAN Developer">MEAN Developer</option>
+          <option value="JAVA Developer">JAVA Developer</option>
+          <option value="Front-End Developer">Front-End Developer</option>
+          <option value="Back-End Developer">Back-End Developer</option>
+          <option value="Full-Stack Developer">Full-Stack Developer</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="basic-url" class="form-label">Enter job location</label>
+        <div class="input-group">
+          <input required name="job_location" type="text" class="form-control" id="basic-url" value="<%= locals.isUpdate ? job.joblocation : '' %>"  />
+        </div>
+      </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Company Name</span>
+        <input required name="company_name" type="text" class="form-control" 
+        value="<%= locals.isUpdate ? job.companyname : '' %>" />
+      </div>
+
+      <div class="input-group mb-3">
+        <input required name="salary" type="text" class="form-control" placeholder="enter salary" value="<%= locals.isUpdate ? job.salary : '' %>" />
+        <span class="input-group-text">Total Positions</span>
+        <input required name="number_of_openings" type="number" class="form-control" placeholder="total no of openings" value="<%= locals.isUpdate ? job.numberofopenings : '' %>"  />
+      </div>
+
+      <div class="input-group mb-3">
+        <select required multiple name="skills_required" class="form-select">
+          <option selected disabled>select skills required for this job</option>
+          <option value="React" <%= locals.isUpdate && job.skillsrequired.includes('React') ? 'selected' : '' %>>React</option>
+          <option value="NodeJs" <%= locals.isUpdate && job.skillsrequired.includes('NodeJs') ? 'selected' : '' %>>NodeJs</option>
+          <option value="Angular" <%= locals.isUpdate && job.skillsrequired.includes('Angular') ? 'selected' : '' %>>Angular</option>
+          <option value="MongoDB" <%= locals.isUpdate && job.skillsrequired.includes('MongoDB') ? 'selected' : '' %>>MongoDB</option>
+          <option value="SQL" <%= locals.isUpdate && job.skillsrequired.includes('SQL') ? 'selected' : '' %>>SQL</option>
+          <option value="Express" <%= locals.isUpdate && job.skillsrequired.includes('Express') ? 'selected' : '' %>>Express</option>
+          <option value="Java" <%= locals.isUpdate && job.skillsrequired.includes('Java') ? 'selected' : '' %>>Java</option>
+          <option value="SpringBoot" <%= locals.isUpdate && job.skillsrequired.includes('SpringBoot') ? 'selected' : '' %>>SpringBoot</option>
+          <option value="C++" <%= locals.isUpdate && job.skillsrequired.includes('C++') ? 'selected' : '' %>>C++</option>
+          <option value="Data Structures & Algo" <%= locals.isUpdate && job.skillsrequired.includes('Data Structures & Algo') ? 'selected' : '' %>>Data Structures & Algo</option>
+        </select>
+        <span class="input-group-text">Apply By</span>
+        <input name="apply_by" type="date" class="form-control"  />
+      </div>
+      
+
+      <button class="w-100 mb-3 mt-2 btn btn-md btn-success" type="submit">
+        <%= locals.isUpdate ? 'Update' : 'Submit' %>
+      </button>
+
+    </form>
+  </div>
+</div>
